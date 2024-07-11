@@ -1,6 +1,5 @@
-.workspace-button {
-    background-color: #353A40;
-}
-
-.workspace-toggle {
+.highlight-dropdown {
+    width: 5px;
+    border: 1px;
+    background-color: #6B3EED
 }

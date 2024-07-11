@@ -41,11 +41,10 @@ const TODOS = {
 };
 
 const TodoList = () => {
-  return <div style={{backgroundColor: '#353A40'}}>
-    <Dropdown data-bs-theme="dark" as={ButtonGroup}>
-      <Button variant="dark">Workspace</Button>
-
-      <Dropdown.Toggle split variant="dark" id="dropdown-split-basic" />
+  return <div style={{display: 'flex', direction: 'row'}} >
+    <div className="highlight-dropdown" ></div>
+    <Dropdown variant="dark" as={ButtonGroup}>
+      <Dropdown.Toggle variant="dark" split id="dropdown-split-basic" >Workspace</Dropdown.Toggle>
 
       <Dropdown.Menu >
         <Dropdown.Item href="#/action-1">Personal</Dropdown.Item>
