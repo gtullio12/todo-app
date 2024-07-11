@@ -1,7 +1,11 @@
+import 'bootstrap/dist/css/bootstrap.min.css';
+import './TodoList.css';
+import TodoList from "./TodoList";
+
 function App() {
   return (
-    <div className="App">
-      <p>Hello world</p>
+    <div style={{backgroundColor: '#353A40'}} className="App">
+      <TodoList  style={{backgroundColor: '#353A40'}}/>
     </div>
   );
 }
