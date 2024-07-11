@@ -1,8 +1,7 @@
 import Dropdown from 'react-bootstrap/Dropdown';
-import Button from 'react-bootstrap/Button';
 import ButtonGroup from 'react-bootstrap/ButtonGroup';
 
-
+/*
 const TODOS = {
   todos: [
     {
@@ -39,6 +38,7 @@ const TODOS = {
     },
   ],
 };
+*/
 
 const TodoList = () => {
   return <div style={{display: 'flex', direction: 'row'}} >
