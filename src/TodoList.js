@@ -46,7 +46,7 @@ const TodoList = () => {
     <Dropdown variant="dark" as={ButtonGroup}>
       <Dropdown.Toggle variant="dark" split id="dropdown-split-basic" >Workspace</Dropdown.Toggle>
 
-      <Dropdown.Menu >
+      <Dropdown.Menu variant="dark">
         <Dropdown.Item href="#/action-1">Personal</Dropdown.Item>
         <Dropdown.Item href="#/action-2">Work</Dropdown.Item>
       </Dropdown.Menu>
