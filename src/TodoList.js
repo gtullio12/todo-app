@@ -1,49 +1,25 @@
 import Dropdown from "react-bootstrap/Dropdown";
 import ButtonGroup from "react-bootstrap/ButtonGroup";
 import TodoListItem from "./TodoListItem";
+import { styled } from '@mui/material/styles';
+import { Button } from "@mui/material";
 
-/*
-const TODOS = {
-  todos: [
-    {
-      title: "Update Documentation",
-      content: "some content",
-    },
-    {
-      title: "Add GET API",
-      content: "some content",
-    },
-    {
-      title: "Update POST API",
-      content: "some content",
-    },
-    {
-      title: "Add method headers for post",
-      content: "some content",
-    },
-    {
-      title: "Add .gitignore file",
-      content: "some content",
-    },
-    {
-      title: "Deploy into production",
-      content: "some content",
-    },
-    {
-      title: "Deploy into alpha and beta",
-      content: "some content",
-    },
-    {
-      title: "Deploy to pipeline",
-      content: "some content",
-    },
-  ],
-};
-*/
+
+const AddTaskButton = styled(Button)(({ theme }) => ({
+  color: 'white',
+  backgroundColor: '#6C40EC',
+  '&:hover': {
+    backgroundColor: '#812387',
+  },
+  width: '100px',
+  height:'30px',
+  fontSize: 8,
+}))
+
 
 const TodoList = () => {
   return (
-  <div style={{width:'25%'}}>
+  <div style={{width:'100%', height:'100%'}}>
     <div style={{ display: "flex", direction: "row" }}>
       <div className="highlight-dropdown"></div>
       <Dropdown style={{width:'100%'}} variant="dark" as={ButtonGroup}>
@@ -59,6 +35,9 @@ const TodoList = () => {
     </div>
     <div>
         <TodoListItem />
+    </div>
+    <div style={{display:'flex', justifyContent:'center'}}>
+      <AddTaskButton variant="contained" >Add Task</AddTaskButton>
     </div>
   </div>);
 };

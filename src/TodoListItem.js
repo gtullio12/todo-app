@@ -36,10 +36,43 @@ const TODOS = {
       title: "Deploy to pipeline",
       content: "some content",
     },
+{
+      title: "Deploy to pipeline",
+      content: "some content",
+    },
+{
+      title: "Deploy to pipeline",
+      content: "some content",
+    },
+{
+      title: "Deploy to pipeline",
+      content: "some content",
+    },
+{
+      title: "Deploy to pipeline",
+      content: "some content",
+    },
+{
+      title: "Deploy to pipeline",
+      content: "some content",
+    },
+{
+      title: "Deploy to pipeline",
+      content: "some content",
+    },
   ],
 };
 
+var trashCanStyle = {
+ color: '#633B48',
+ display: "block", 
+ marginLeft: "auto", 
+ marginRight: "0px" 
+}
+
 const TodoListItem = () => {
+  const [deleteStyle, setDeleteStyle] = useState(trashCanStyle);
+
   const todos = TODOS.todos.map((todo) => {
     return (
       <div
@@ -51,7 +84,7 @@ const TodoListItem = () => {
       >
         <p style={{ color: "white", fontSize: "10px" }}>{todo.title}</p>
         <BiSolidTrash
-          style={{ display: "block", marginLeft: "auto", marginRight: "0px" }}
+          style={deleteStyle}
         />
         <CheckBox />
       </div>
@@ -65,9 +98,6 @@ const CheckBox = () => {
 
   useEffect(() => {
     window.onclick = (event) => {
-      console.log(event.target)
-      console.log(checkBoxRef.current)
-      console.log(event.composedPath().includes(checkBoxRef.current))
     };
   }, []);
 
