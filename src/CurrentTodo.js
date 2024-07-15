@@ -1,8 +1,10 @@
 const CurrentTodo = ({todo}) => {
     return (
-        <div>
-            <h1>Current todo</h1>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+        <div  style={{color:'white', diplay:'flex', flexDirection:'column', justifyContent: 'start'}}>
+            <h1>Current Todo</h1>
+            <label>
+                <textarea style={{color:'white', border:'none',backgroundColor:'#353A40'}} name="editTodo" rows={4} cols={40} />
+            </label>
         </div>
     )
 }
