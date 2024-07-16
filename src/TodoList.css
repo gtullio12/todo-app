@@ -3,3 +3,28 @@
     border: 1px;
     background-color: #6B3EED
 }
+
+.todo-text-area {
+    position: absolute;
+    top: 35px;
+    color: white;
+    background-color: #353A40;
+}
+
+.easy-edit-container {
+    position: absolute;
+    top: 0;
+    color: black;
+    margin-bottom: 5px;
+}
+
+.easy-edit-inline-wrapper .easy-edit-button-wrapper .easy-edit-button {
+    border-radius: 5px;
+    color: white;
+    background-color: #6B3EED;
+}
+
+.easy-edit-inline-wrapper .easy-edit-component-wrapper input{
+    background-color: #353A40;
+    margin-right: 3px;
+}

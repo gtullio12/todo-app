@@ -36,7 +36,7 @@ const TodoList = () => {
           <TodoListItem />
         </div>
       </div>
-      <div style={{ position: "absolute", bottom: 0, left: "50%" }}>
+      <div style={{ position: "absolute", bottom: 0, left: "40%",marginBottom:'10px' }}>
         <AddTaskButton variant="contained">Add Task</AddTaskButton>
       </div>
     </div>

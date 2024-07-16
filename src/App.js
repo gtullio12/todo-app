@@ -7,7 +7,7 @@ import CurrentTodo from "./CurrentTodo";
 function App() {
   return (
     <div
-      style={{ backgroundColor: 'black',display: "flex", direction: "row", backgroundColor: "#353A40", height:'100vh' }}
+      style={{ display: "flex", direction: "row", backgroundColor: "#353A40", height:'100vh' }}
       className="App"
     >
       <div style={{display: "flex", width: "40%", height: "100vh" }}>
