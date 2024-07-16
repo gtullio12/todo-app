@@ -65,9 +65,7 @@ const TODOS = {
 
 var trashCanStyle = {
  color: '#633B48',
- display: "block", 
- marginLeft: "auto", 
- marginRight: "0px" 
+ position: 'absolute',
 }
 
 const TodoListItem = () => {

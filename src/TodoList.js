@@ -18,7 +18,7 @@ const AddTaskButton = styled(Button)(({ theme }) => ({
 const TodoList = () => {
   return (
     <div style={{ width: "100%", position: "relative"}}>
-      <div style={{width:'100%', height:'95%', backgroundColor: '#2C3137'}}>
+      <div style={{width:'100%', height:'90%', backgroundColor: '#2C3137'}}>
         <div style={{ display: "flex", direction: "row" }}>
           <div className="highlight-dropdown"></div>
           <Dropdown style={{ width: "100%" }} variant="dark" as={ButtonGroup}>
@@ -32,11 +32,11 @@ const TodoList = () => {
             </Dropdown.Menu>
           </Dropdown>
         </div>
-        <div style={{ height: "100vh" }}>
+        <div>
           <TodoListItem />
         </div>
       </div>
-      <div style={{ position: "absolute", bottom: 0, left: "40%",marginBottom:'10px' }}>
+      <div style={{ position: "absolute", bottom: 0, left: "35%",marginBottom:'10px' }}>
         <AddTaskButton variant="contained">Add Task</AddTaskButton>
       </div>
     </div>
