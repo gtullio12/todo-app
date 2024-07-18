@@ -36,27 +36,27 @@ const TODOS = {
       title: "Deploy to pipeline",
       content: "some content",
     },
-{
+    {
       title: "Deploy to pipeline",
       content: "some content",
     },
-{
+    {
       title: "Deploy to pipeline",
       content: "some content",
     },
-{
+    {
       title: "Deploy to pipeline",
       content: "some content",
     },
-{
+    {
       title: "Deploy to pipeline",
       content: "some content",
     },
-{
+    {
       title: "Deploy to pipeline",
       content: "some content",
     },
-{
+    {
       title: "Deploy to pipeline",
       content: "some content",
     },
@@ -64,12 +64,17 @@ const TODOS = {
 };
 
 var trashCanStyle = {
- color: '#633B48',
- position: 'absolute',
+  color: '#633B48',
+  position: 'absolute',
+  right: 0
 }
 
 const TodoListItem = () => {
   const [deleteStyle, setDeleteStyle] = useState(trashCanStyle);
+
+  useEffect(() => {
+    console.log("endpoint --> " + process.env.TODO_API_BACKEND_ENDPOINT)
+  }, []);
 
   const todos = TODOS.todos.map((todo) => {
     return (
