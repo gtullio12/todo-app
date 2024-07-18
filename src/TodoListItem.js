@@ -1,4 +1,4 @@
-import { useState, useRef, useEffect } from "react";
+import { useState, useEffect } from "react";
 import './TodoListItem.css';
 import { BiSolidTrash } from "react-icons/bi";
 
@@ -73,6 +73,7 @@ const TodoListItem = () => {
   const [deleteStyle, setDeleteStyle] = useState(trashCanStyle);
 
   useEffect(() => {
+    setDeleteStyle(trashCanStyle);
     console.log("endpoint --> " + process.env.TODO_API_BACKEND_ENDPOINT)
   }, []);
 
@@ -97,8 +98,6 @@ const TodoListItem = () => {
 };
 
 const CheckBox = () => {
-  const checkBoxRef = useRef();
-
   useEffect(() => {
     window.onclick = (event) => {
     };
