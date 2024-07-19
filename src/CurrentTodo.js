@@ -16,7 +16,7 @@ const CurrentTodo = ({ todo }) => {
       }}
     >
       <EasyEdit
-      class="easy-edit-container"
+        class="easy-edit-container"
         type={Types.TEXT}
         onSave={save}
         onCancel={cancel}

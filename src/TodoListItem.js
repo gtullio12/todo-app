@@ -1,67 +1,7 @@
 import { useState, useEffect } from "react";
 import './TodoListItem.css';
 import { BiSolidTrash } from "react-icons/bi";
-
-const TODOS = {
-  todos: [
-    {
-      title: "Update Documentation",
-      content: "some content",
-    },
-    {
-      title: "Add GET API",
-      content: "some content",
-    },
-    {
-      title: "Update POST API",
-      content: "some content",
-    },
-    {
-      title: "Add method headers for post",
-      content: "some content",
-    },
-    {
-      title: "Add .gitignore file",
-      content: "some content",
-    },
-    {
-      title: "Deploy into production",
-      content: "some content",
-    },
-    {
-      title: "Deploy into alpha and beta",
-      content: "some content",
-    },
-    {
-      title: "Deploy to pipeline",
-      content: "some content",
-    },
-    {
-      title: "Deploy to pipeline",
-      content: "some content",
-    },
-    {
-      title: "Deploy to pipeline",
-      content: "some content",
-    },
-    {
-      title: "Deploy to pipeline",
-      content: "some content",
-    },
-    {
-      title: "Deploy to pipeline",
-      content: "some content",
-    },
-    {
-      title: "Deploy to pipeline",
-      content: "some content",
-    },
-    {
-      title: "Deploy to pipeline",
-      content: "some content",
-    },
-  ],
-};
+import { api } from "./api";
 
 var trashCanStyle = {
   color: '#633B48',
@@ -70,31 +10,33 @@ var trashCanStyle = {
 }
 
 const TodoListItem = () => {
-  const [deleteStyle, setDeleteStyle] = useState(trashCanStyle);
+  const [todoComponents, setTodoComponents] = useState([]);
 
   useEffect(() => {
-    setDeleteStyle(trashCanStyle);
-    console.log("endpoint --> " + process.env.TODO_API_BACKEND_ENDPOINT)
+    api.get(process.env.TODO_API_BACKEND_ENDPOINT)
+      .then(r => r.json())
+      .then(r => Array.from(r))
+      .then(r => r.map((todo) => {
+        return (
+          <div
+            style={{
+              display: "flex",
+              direction: "row",
+              backgroundColor: "#2C3137",
+            }}
+          >
+            <p style={{ color: "white", fontSize: "10px" }}>{todo.Title}</p>
+            <BiSolidTrash
+              style={trashCanStyle}
+            />
+            <CheckBox />
+          </div>
+        );
+      }))
+      .then(r => setTodoComponents(r))
   }, []);
 
-  const todos = TODOS.todos.map((todo) => {
-    return (
-      <div
-        style={{
-          display: "flex",
-          direction: "row",
-          backgroundColor: "#2C3137",
-        }}
-      >
-        <p style={{ color: "white", fontSize: "10px" }}>{todo.title}</p>
-        <BiSolidTrash
-          style={deleteStyle}
-        />
-        <CheckBox />
-      </div>
-    );
-  });
-  return <div>{todos}</div>;
+  return <div>{todoComponents}</div>;
 };
 
 const CheckBox = () => {
