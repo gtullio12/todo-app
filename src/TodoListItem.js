@@ -9,33 +9,25 @@ var trashCanStyle = {
   right: 0
 }
 
-const TodoListItem = () => {
-  const [todoComponents, setTodoComponents] = useState([]);
+const TodoListItem = ({ todos, setCurrentTodos }) => {
 
-  useEffect(() => {
-    api.get(process.env.TODO_API_BACKEND_ENDPOINT)
-      .then(r => r.json())
-      .then(r => Array.from(r))
-      .then(r => r.map((todo) => {
-        return (
-          <div
-            style={{
-              display: "flex",
-              direction: "row",
-              backgroundColor: "#2C3137",
-            }}
-          >
-            <p style={{ color: "white", fontSize: "10px" }}>{todo.Title}</p>
-            <BiSolidTrash
-              style={trashCanStyle}
-            />
-            <CheckBox />
-          </div>
-        );
-      }))
-      .then(r => setTodoComponents(r))
-  }, []);
-
+  const todoComponents = todos.map((todo) => {
+    return (
+      <div
+        style={{
+          display: "flex",
+          direction: "row",
+          backgroundColor: "#2C3137",
+        }}
+      >
+        <p style={{ color: "white", fontSize: "10px" }}>{todo.Title}</p>
+        <BiSolidTrash
+          style={trashCanStyle}
+        />
+        <CheckBox />
+      </div>
+    );
+  });
   return <div>{todoComponents}</div>;
 };
 
