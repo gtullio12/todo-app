@@ -7,8 +7,7 @@ import { useState } from "react";
 
 const CurrentTodo = ({ todo, updateTodos }) => {
 
-  console.log("Todo content --> " + todo.Content);
-  const [todoTitle, setTodoTitle] = useState(todo.Title);
+  const [todoTitle, setTodoTitle] = useState(todo.Title ? todo.Title : "Edit");
   const [todoContent, setTodoContent] = useState(todo.Content);
 
   const handleTodoContentChange = (event) => {
@@ -53,7 +52,7 @@ const CurrentTodo = ({ todo, updateTodos }) => {
     >
       <EasyEdit
         class="easy-edit-container"
-        placeholder={todo.Title}
+        placeholder={todoTitle}
         type={Types.TEXT}
         onSave={save}
         onCancel={cancel}

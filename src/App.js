@@ -26,13 +26,21 @@ function App() {
     updateTodos();
   }, [])
 
+  console.log("Current Todo --> " + JSON.stringify(currentTodo))
+
   return (
     <div
       style={{ display: "flex", direction: "row", backgroundColor: "#353A40", height: '100vh' }}
       className="App"
     >
       <div style={{ display: "flex", width: "40%", height: "100vh" }}>
-        <TodoList todos={todos} setCurrentTodos={setCurrentTodos} style={{ height: '100vh' }} />
+        <TodoList
+          todos={todos}
+          setCurrentTodos={setCurrentTodos}
+          setCurrentTodo={setCurrentTodo}
+          style={{
+            height: '100vh'
+          }} />
       </div>
       <div style={{ marginBottom: '10%', marginTop: '10%', marginRight: '10%', marginLeft: '10%', display: "flex", width: "60%", height: "100%" }}>
         <CurrentTodo todo={currentTodo} updateTodos={updateTodos} />

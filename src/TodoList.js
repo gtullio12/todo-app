@@ -15,7 +15,7 @@ const AddTaskButton = styled(Button)(({ theme }) => ({
   fontSize: 8,
 }));
 
-const TodoList = ({ todos, setCurrentTodos }) => {
+const TodoList = ({ todos, setCurrentTodos, setCurrentTodo }) => {
   return (
     <div style={{ width: "100%", position: "relative" }}>
       <div style={{ width: '100%', height: '90%', backgroundColor: '#2C3137' }}>
@@ -33,7 +33,7 @@ const TodoList = ({ todos, setCurrentTodos }) => {
           </Dropdown>
         </div>
         <div>
-          <TodoListItem todos={todos} setCurrentTodos={setCurrentTodos} />
+          <TodoListItem todos={todos} setCurrentTodos={setCurrentTodos} setCurrentTodo={setCurrentTodo} />
         </div>
       </div>
       <div style={{ position: "absolute", bottom: 0, left: "35%", marginBottom: '10px' }}>
