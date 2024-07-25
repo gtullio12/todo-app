@@ -15,6 +15,11 @@ const api = {
     fetch(endpoint, {
       method: "PUT",
       body: body && JSON.stringify(body)
+    }),
+  delete: (endpoint, body) =>
+    fetch(endpoint, {
+      method: 'DELETE',
+      body: body && JSON.stringify(body)
     })
 };
 

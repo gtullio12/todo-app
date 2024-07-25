@@ -1,6 +1,6 @@
 import Dropdown from "react-bootstrap/Dropdown";
 import ButtonGroup from "react-bootstrap/ButtonGroup";
-import TodoListItem from "./TodoListItem";
+import TodoListItems from './TodoListItems.js';
 import { styled } from "@mui/material/styles";
 import { Button } from "@mui/material";
 
@@ -33,7 +33,7 @@ const TodoList = ({ todos, setCurrentTodos, setCurrentTodo }) => {
           </Dropdown>
         </div>
         <div>
-          <TodoListItem todos={todos} setCurrentTodos={setCurrentTodos} setCurrentTodo={setCurrentTodo} />
+          <TodoListItems todos={todos} setCurrentTodos={setCurrentTodos} setCurrentTodo={setCurrentTodo} />
         </div>
       </div>
       <div style={{ position: "absolute", bottom: 0, left: "35%", marginBottom: '10px' }}>

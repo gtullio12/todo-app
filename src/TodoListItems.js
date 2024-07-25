@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import './TodoListItem.css';
 import { BiSolidTrash } from "react-icons/bi";
 import { styled } from 'styled-components';
+import { api } from "./api";
 
 const TodoItem = styled.span`
 ${(props) => {
@@ -32,7 +33,21 @@ var trashCanStyle = {
 }
 
 const TodoListItems = ({ todos, setCurrentTodos, setCurrentTodo }) => {
-  const [todoDecoration, setTodoDecoration] = useState("underline"); // Can either be 'underline' or 'line-through'
+
+  const todoComponents = todos.map((todo) => {
+    return (
+      <TodoListItem
+        todo={todo}
+        setCurrentTodo={setCurrentTodo}
+      />
+    );
+  });
+
+  return <div>{todoComponents}</div>;
+};
+
+const TodoListItem = ({ todo, setCurrentTodo }) => {
+
   const [isCheckBoxChecked, setIsCheckBoxChecked] = useState(false);
 
   const handleCheckedBox = (event) => {
@@ -41,39 +56,44 @@ const TodoListItems = ({ todos, setCurrentTodos, setCurrentTodo }) => {
     }
   }
 
+  const todoItemDeleted = () => {
+    api.delete('http://localhost:8080/deleteTodo', {
+      Id: todo.Id
+    });
+  }
+
   useEffect(() => {
     if (isCheckBoxChecked === true) {
       setTodoDecoration('line-through');
+    } else {
+      setTodoDecoration('none');
     }
   }, [isCheckBoxChecked]);
 
-
-  const todoComponents = todos.map((todo) => {
-    return (
-      <div
-        style={{
-          display: "flex",
-          direction: "row",
-          backgroundColor: "#2C3137",
-        }}
-      >
-        <div onClick={() => {
-          setTodoDecoration("line-through");
-          setCurrentTodo(todo)
-        }}>
-          <TodoItem $textDecoration={todoDecoration} >{todo.Title}</TodoItem>
-        </div>
-        <BiSolidTrash
-          style={trashCanStyle}
-        />
-        <div>
-          <input onChange={handleCheckedBox} className="checkBox" type="checkbox" id="checkbox" />
-        </div>
+  const [todoDecoration, setTodoDecoration] = useState("underline");
+  return (
+    <div
+      style={{
+        display: "flex",
+        direction: "row",
+        backgroundColor: "#2C3137",
+      }}
+    >
+      <div onClick={() => {
+        setTodoDecoration("line-through");
+        setCurrentTodo(todo)
+      }}>
+        <TodoItem $textDecoration={todoDecoration} >{todo.Title}</TodoItem>
       </div>
-    );
-  });
-
-  return <div>{todoComponents}</div>;
+      <BiSolidTrash
+        onClick={todoItemDeleted}
+        style={trashCanStyle}
+      />
+      <div>
+        <input onChange={handleCheckedBox} className="checkBox" type="checkbox" id="checkbox" />
+      </div>
+    </div>
+  );
 };
 
 
