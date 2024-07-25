@@ -23,7 +23,7 @@ function App() {
       .then(r => {
         var ptds = [];
         var wtds = [];
-        r.map((val) => {
+        r.forEach((val) => {
           if (val.Workspace === 'personal') {
             ptds.push(val);
           } else {
