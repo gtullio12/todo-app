@@ -20,7 +20,7 @@ const api = {
     fetch(endpoint, {
       method: 'DELETE',
       body: body && JSON.stringify(body)
-    })
+    }),
 };
 
 export { api };

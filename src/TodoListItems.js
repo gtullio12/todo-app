@@ -32,12 +32,13 @@ var trashCanStyle = {
   right: 0
 }
 
-const TodoListItems = ({ todos, setCurrentTodos, setCurrentTodo }) => {
+const TodoListItems = ({ todos, updateTodos, setCurrentTodos, setCurrentTodo }) => {
 
   const todoComponents = todos.map((todo) => {
     return (
       <TodoListItem
         todo={todo}
+        updateTodos={updateTodos}
         setCurrentTodo={setCurrentTodo}
       />
     );
@@ -46,7 +47,7 @@ const TodoListItems = ({ todos, setCurrentTodos, setCurrentTodo }) => {
   return <div>{todoComponents}</div>;
 };
 
-const TodoListItem = ({ todo, setCurrentTodo }) => {
+const TodoListItem = ({ todo, updateTodos, setCurrentTodo }) => {
 
   const [isCheckBoxChecked, setIsCheckBoxChecked] = useState(false);
 
@@ -58,8 +59,13 @@ const TodoListItem = ({ todo, setCurrentTodo }) => {
 
   const todoItemDeleted = () => {
     api.delete('http://localhost:8080/deleteTodo', {
-      Id: todo.Id
-    });
+      "Id": todo.Id
+    })
+      .then(r => {
+        updateTodos();
+        setIsCheckBoxChecked(false);
+        setTodoDecoration('none');
+      })
   }
 
   useEffect(() => {
@@ -80,8 +86,7 @@ const TodoListItem = ({ todo, setCurrentTodo }) => {
       }}
     >
       <div onClick={() => {
-        setTodoDecoration("line-through");
-        setCurrentTodo(todo)
+        setCurrentTodo(todo);
       }}>
         <TodoItem $textDecoration={todoDecoration} >{todo.Title}</TodoItem>
       </div>
@@ -90,7 +95,7 @@ const TodoListItem = ({ todo, setCurrentTodo }) => {
         style={trashCanStyle}
       />
       <div>
-        <input onChange={handleCheckedBox} className="checkBox" type="checkbox" id="checkbox" />
+        <input checked={isCheckBoxChecked} onChange={handleCheckedBox} className="checkBox" type="checkbox" id="checkbox" />
       </div>
     </div>
   );

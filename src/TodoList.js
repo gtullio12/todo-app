@@ -3,6 +3,7 @@ import ButtonGroup from "react-bootstrap/ButtonGroup";
 import TodoListItems from './TodoListItems.js';
 import { styled } from "@mui/material/styles";
 import { Button } from "@mui/material";
+import { api } from "./api.js";
 
 const AddTaskButton = styled(Button)(({ theme }) => ({
   color: "white",
@@ -15,29 +16,43 @@ const AddTaskButton = styled(Button)(({ theme }) => ({
   fontSize: 8,
 }));
 
-const TodoList = ({ todos, setCurrentTodos, setCurrentTodo }) => {
+const TodoList = ({ todos, updateTodos, setCurrentTodos, setCurrentTodo, workspace, setCurrentWorkspace }) => {
+  const addTodo = () => {
+    api.post('http://localhost:8080/createTodo', {
+      'Content': '',
+      'Title': 'Enter Title...',
+      'IsDone': false,
+      'Workspace': workspace,
+    })
+      .then(r => updateTodos());
+  };
+
   return (
     <div style={{ width: "100%", position: "relative" }}>
-      <div style={{ width: '100%', height: '90%', backgroundColor: '#2C3137' }}>
+      <div style={{ position: 'absolute', width: '100%', height: '90%', backgroundColor: '#2C3137' }}>
         <div style={{ display: "flex", direction: "row" }}>
           <div className="highlight-dropdown"></div>
           <Dropdown style={{ width: "100%" }} variant="dark" as={ButtonGroup}>
             <Dropdown.Toggle variant="dark" split id="dropdown-split-basic">
-              Workspace
+              {workspace.charAt(0).toUpperCase() + workspace.slice(1)}
             </Dropdown.Toggle>
 
             <Dropdown.Menu variant="dark">
-              <Dropdown.Item href="#/action-1">Personal</Dropdown.Item>
-              <Dropdown.Item href="#/action-2">Work</Dropdown.Item>
+              <Dropdown.Item onClick={() => setCurrentWorkspace('personal')} href="#/action-1">Personal</Dropdown.Item>
+              <Dropdown.Item onClick={() => setCurrentWorkspace('work')} href="#/action-2">Work</Dropdown.Item>
             </Dropdown.Menu>
           </Dropdown>
         </div>
         <div>
-          <TodoListItems todos={todos} setCurrentTodos={setCurrentTodos} setCurrentTodo={setCurrentTodo} />
+          <TodoListItems
+            todos={todos}
+            updateTodos={updateTodos}
+            setCurrentTodos={setCurrentTodos}
+            setCurrentTodo={setCurrentTodo} />
         </div>
       </div>
-      <div style={{ position: "absolute", bottom: 0, left: "35%", marginBottom: '10px' }}>
-        <AddTaskButton variant="contained">Add Task</AddTaskButton>
+      <div style={{ position: "fixed", bottom: 0, left: '10%' }}>
+        <AddTaskButton onClick={addTodo} variant="contained">Add Task</AddTaskButton>
       </div>
     </div>
   );

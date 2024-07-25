@@ -7,17 +7,31 @@ import { useEffect, useState } from "react";
 import { api } from "./api";
 
 function App() {
+  const [personalTodos, setPersonalTodos] = useState([]);
+  const [workTodos, setWorkTodos] = useState([]);
   const [currentTodo, setCurrentTodo] = useState({});
-  const [todos, setCurrentTodos] = useState([]);
+  const [workspace, setCurrentWorkspace] = useState("personal");
 
   const updateTodos = () => {
     api.get('http://localhost:8080/getTodos')
       .then(r => r.json())
-      .then(r => Array.from(r))
+      .then(r => {
+        return r ? Array.from(r) : [];
+      })
       .then(r => r.map((val) => JSON.stringify(val)))
       .then(r => r.map((val) => JSON.parse(val)))
       .then(r => {
-        setCurrentTodos(r)
+        var ptds = [];
+        var wtds = [];
+        r.map((val) => {
+          if (val.Workspace === 'personal') {
+            ptds.push(val);
+          } else {
+            wtds.push(val);
+          }
+        });
+        setPersonalTodos(ptds);
+        setWorkTodos(wtds);
       });
   }
 
@@ -32,9 +46,12 @@ function App() {
     >
       <div style={{ display: "flex", width: "40%", height: "100vh" }}>
         <TodoList
-          todos={todos}
-          setCurrentTodos={setCurrentTodos}
+          todos={workspace === 'personal' ? personalTodos : workTodos}
+          setCurrentTodos={workspace === 'personal' ? setPersonalTodos : setWorkTodos}
           setCurrentTodo={setCurrentTodo}
+          updateTodos={updateTodos}
+          workspace={workspace}
+          setCurrentWorkspace={setCurrentWorkspace}
           style={{
             height: '100vh'
           }} />

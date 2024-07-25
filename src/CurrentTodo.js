@@ -14,12 +14,13 @@ const CurrentTodo = ({ todo, updateTodos, setCurrentTodo }) => {
     // Call the edit todo API
     api.put('http://localhost:8080/editTodo', {
       "Id": todo.Id,
-      "title": todo.Title,
-      "content": todo.Content,
-      "isDone": todo.IsDone,
+      "Title": todo.Title,
+      "Content": todo.Content,
+      "IsDone": todo.IsDone,
+      "Workspace": todo.Workspace,
     });
     updateTodos();
-    setCurrentTodo({ Content: todo.Content, Title: todo.Title, Id: todo.Id, IsDone: todo.IsDone });
+    setCurrentTodo({ Content: todo.Content, Title: todo.Title, Id: todo.Id, IsDone: todo.IsDone, Workspace: todo.Workspace });
   }
 
   const SaveTodoButton = styled(Button)(({ theme }) => ({
