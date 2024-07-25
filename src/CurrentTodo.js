@@ -2,27 +2,24 @@ import EasyEdit, { Types } from "react-easy-edit";
 import { styled } from "@mui/material/styles";
 import { Button } from "@mui/material";
 import { api } from "./api";
-import { useState } from "react";
 
 
-const CurrentTodo = ({ todo, updateTodos }) => {
-
-  const [todoTitle, setTodoTitle] = useState(todo.Title ? todo.Title : "Edit");
-  const [todoContent, setTodoContent] = useState(todo.Content);
+const CurrentTodo = ({ todo, updateTodos, setCurrentTodo }) => {
 
   const handleTodoContentChange = (event) => {
-    setTodoContent(event.target.value);
+    setCurrentTodo({ Content: event.target.value, Title: todo.Title, Id: todo.Id, IsDone: todo.IsDone });
   };
 
   const handleSaveTodoContent = () => {
     // Call the edit todo API
     api.put('http://localhost:8080/editTodo', {
       "Id": todo.Id,
-      "title": todoTitle,
-      "content": todoContent,
+      "title": todo.Title,
+      "content": todo.Content,
       "isDone": todo.IsDone,
     });
     updateTodos();
+    setCurrentTodo({ Content: todo.Content, Title: todo.Title, Id: todo.Id, IsDone: todo.IsDone });
   }
 
   const SaveTodoButton = styled(Button)(({ theme }) => ({
@@ -37,7 +34,14 @@ const CurrentTodo = ({ todo, updateTodos }) => {
   }));
 
   const save = (value) => {
-    setTodoTitle(value);
+    setCurrentTodo({ Content: todo.Content, Title: value, Id: todo.Id, IsDone: todo.IsDone });
+    api.put('http://localhost:8080/editTodo', {
+      "Id": todo.Id,
+      "title": value,
+      "content": todo.Content,
+      "isDone": todo.IsDone,
+    });
+    updateTodos();
   };
 
   const cancel = () => {
@@ -52,7 +56,7 @@ const CurrentTodo = ({ todo, updateTodos }) => {
     >
       <EasyEdit
         class="easy-edit-container"
-        placeholder={todoTitle}
+        value={todo.Title}
         type={Types.TEXT}
         onSave={save}
         onCancel={cancel}
@@ -67,7 +71,7 @@ const CurrentTodo = ({ todo, updateTodos }) => {
           color: "white",
           backgroundColor: "#353A40",
         }}
-        value={todoContent}
+        value={todo.Content}
         onChange={handleTodoContentChange}
         name="editTodo"
         rows={4}

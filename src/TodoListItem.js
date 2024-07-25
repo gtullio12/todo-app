@@ -15,6 +15,7 @@ const TodoItem = styled.span`
 var trashCanStyle = {
   color: '#633B48',
   position: 'absolute',
+  marginTop: '9px',
   right: 0
 }
 
@@ -25,11 +26,12 @@ const TodoListItem = ({ todos, setCurrentTodos, setCurrentTodo }) => {
         style={{
           display: "flex",
           direction: "row",
-          marginBottom: '10px',
           backgroundColor: "#2C3137",
         }}
       >
-        <div onClick={() => setCurrentTodo(todo)}>
+        <div onClick={() => {
+          setCurrentTodo(todo)
+        }}>
           <TodoItem>{todo.Title}</TodoItem>
         </div>
         <BiSolidTrash
