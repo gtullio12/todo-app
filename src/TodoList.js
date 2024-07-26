@@ -18,7 +18,7 @@ const AddTaskButton = styled(Button)(({ theme }) => ({
 
 const TodoList = ({ todos, updateTodos, setCurrentTodos, setCurrentTodo, workspace, setCurrentWorkspace }) => {
   const addTodo = () => {
-    api.post('http://localhost:8080/createTodo', {
+    api.post(process.env.TODO_API_BACKEND_ENDPOINT + '/createTodo', {
       'Content': '',
       'Title': 'Enter Title...',
       'IsDone': false,

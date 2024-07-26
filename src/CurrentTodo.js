@@ -12,7 +12,7 @@ const CurrentTodo = ({ todo, updateTodos, setCurrentTodo }) => {
 
   const handleSaveTodoContent = () => {
     // Call the edit todo API
-    api.put('http://localhost:8080/editTodo', {
+    api.put(process.env.TODO_API_BACKEND_ENDPOINT + '/editTodo', {
       "Id": todo.Id,
       "Title": todo.Title,
       "Content": todo.Content,
@@ -36,7 +36,7 @@ const CurrentTodo = ({ todo, updateTodos, setCurrentTodo }) => {
 
   const save = (value) => {
     setCurrentTodo({ Content: todo.Content, Title: value, Id: todo.Id, IsDone: todo.IsDone });
-    api.put('http://localhost:8080/editTodo', {
+    api.put(process.env.TODO_API_BACKEND_ENDPOINT + '/editTodo', {
       "Id": todo.Id,
       "title": value,
       "content": todo.Content,

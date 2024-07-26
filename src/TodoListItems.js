@@ -58,7 +58,7 @@ const TodoListItem = ({ todo, updateTodos, setCurrentTodo }) => {
   }
 
   const todoItemDeleted = () => {
-    api.delete('http://localhost:8080/deleteTodo', {
+    api.delete(process.env.TODO_API_BACKEND_ENDPOINT + '/deleteTodo', {
       "Id": todo.Id
     })
       .then(r => {
