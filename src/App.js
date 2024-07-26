@@ -13,7 +13,7 @@ function App() {
   const [workspace, setCurrentWorkspace] = useState("personal");
 
   const updateTodos = () => {
-    api.get(process.env.TODO_API_BACKEND_ENDPOINT + '/getTodos')
+    api.get('/getTodos')
       .then(r => r.json())
       .then(r => {
         return r ? Array.from(r) : [];
