@@ -12,7 +12,7 @@ const CurrentTodo = ({ todo, updateTodos, setCurrentTodo }) => {
 
   const handleSaveTodoContent = () => {
     // Call the edit todo API
-    api.put('/editTodo', {
+    api.put('https://todo-app-production-8c19.up.railway.app/editTodo', {
       "Id": todo.Id,
       "Title": todo.Title,
       "Content": todo.Content,
@@ -36,7 +36,7 @@ const CurrentTodo = ({ todo, updateTodos, setCurrentTodo }) => {
 
   const save = (value) => {
     setCurrentTodo({ Content: todo.Content, Title: value, Id: todo.Id, IsDone: todo.IsDone });
-    api.put('/editTodo', {
+    api.put('https://todo-app-production-8c19.up.railway.app/editTodo', {
       "Id": todo.Id,
       "title": value,
       "content": todo.Content,

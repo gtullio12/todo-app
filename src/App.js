@@ -13,7 +13,7 @@ function App() {
   const [workspace, setCurrentWorkspace] = useState("personal");
 
   const updateTodos = () => {
-    api.get('/getTodos')
+    api.get('https://todo-app-production-8c19.up.railway.app/createTodo')
       .then(r => r.json())
       .then(r => {
         return r ? Array.from(r) : [];

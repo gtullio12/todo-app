@@ -58,7 +58,7 @@ const TodoListItem = ({ todo, updateTodos, setCurrentTodo }) => {
   }
 
   const todoItemDeleted = () => {
-    api.delete('/deleteTodo', {
+    api.delete('https://todo-app-production-8c19.up.railway.app/deleteTodo', {
       "Id": todo.Id
     })
       .then(r => {
